@@ -42,18 +42,11 @@ describe('Home Screen', () => {
     expect(getByText('New Task')).toBeTruthy();
     fireEvent.press(getByText('New Task'));
 
-    // Change text in the input
     fireEvent.changeText(getByTestId('taskInput'), 'Edited Task');
 
-    /*  await waitFor(() => {
-      expect(getByTestId('taskInput').props.value).toBe('Edited Task');
-    }); */
+    fireEvent.press(getByText('Edit Task'));
 
-    debug();
-
-    //fireEvent.press(getByText('Edit Task'));
-
-    //expect(getByText('Edited Task')).toBeTruthy();
+    expect(getByText('Edited Task')).toBeTruthy();
   });
 
   it('outside click should close the model', () => {
