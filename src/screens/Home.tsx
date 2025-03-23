@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   FlatList,
@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-} from "react-native";
+} from 'react-native';
 
 interface toDoItem {
   task: string;
@@ -18,7 +18,7 @@ interface toDoItem {
 
 const Home: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState('');
   const [editTask, setEditTask] = useState<number | null>(null);
   const [taskList, setTaskList] = useState<toDoItem[]>([]);
 
@@ -59,38 +59,40 @@ const Home: React.FC = () => {
       });
     }
 
-    setTask("");
+    setTask('');
     setModalVisible(!modalVisible);
   };
 
   const modalView = () => (
     <Modal
-      animationType="slide"
+      animationType='slide'
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        setTask("");
+        setTask('');
         setModalVisible(!modalVisible);
       }}
     >
       <TouchableWithoutFeedback
+        testID='modalBackground'
         onPress={() => {
-          setTask("");
+          setTask('');
           setModalVisible(false);
         }}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
-            <View style={{ width: "100%" }}>
+            <View style={{ width: '100%' }}>
               <TextInput
+                testID={'taskInput'}
                 style={styles.input}
-                placeholder="Enter Task"
+                placeholder='Enter Task'
                 value={task}
                 onChangeText={(text) => setTask(text)}
               />
               <View style={{ marginTop: 18 }}>
                 <Button
-                  title={editTask ? "Edit Task" : "Add Task"}
+                  title={editTask != null ? 'Edit Task' : 'Add Task'}
                   onPress={addEditTask}
                 />
               </View>
@@ -102,7 +104,7 @@ const Home: React.FC = () => {
   );
 
   const addButton = () => (
-    <View style={{ position: "absolute", bottom: 18, right: 18 }}>
+    <View style={{ position: 'absolute', bottom: 18, right: 18 }}>
       <View style={styles.addContainer}>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Text style={styles.addText}>+</Text>
@@ -126,30 +128,30 @@ const styles = StyleSheet.create({
   addContainer: {
     height: 70,
     width: 70,
-    backgroundColor: "red",
+    backgroundColor: 'red',
     borderRadius: 100,
     borderWidth: 1,
-    borderColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
+    borderColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   addText: {
     fontSize: 48,
-    color: "white",
+    color: 'white',
     marginBottom: 4,
   },
   modalContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 8,
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -157,10 +159,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: "80%",
+    width: '80%',
   },
   input: {
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 0.5,
     borderRadius: 5,
   },
